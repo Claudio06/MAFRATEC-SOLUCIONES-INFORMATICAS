@@ -1,0 +1,254 @@
+/* styles.css */
+
+/* Importar fuentes de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap');
+
+/* Variables de colores para una paleta coherente */
+:root {
+    --primary-blue: #1e40af;
+    --secondary-purple: #7c3aed;
+    --accent-yellow: #fbbf24;
+    --accent-green: #10b981;
+    --neutral-gray: #f3f4f6;
+    --dark-gray: #374151;
+    --light-bg: #ffffff;
+}
+
+/* Aplicar fuentes */
+body {
+    font-family: 'Roboto', sans-serif;
+    transition: overflow 0.3s ease;
+}
+
+body.menu-open {
+    overflow: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Custom animations mejoradas - optimizadas para rendimiento */
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+    animation: fade-in 0.8s ease-out;
+    will-change: opacity, transform;
+}
+
+@keyframes slide {
+    0% { width: 0%; }
+    100% { width: 100%; }
+}
+
+.animate-slide {
+    animation: slide 2.5s ease-in-out infinite;
+}
+
+/* Respeta preferencias de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Slider de imágenes - optimizado */
+.slider {
+    position: relative;
+    overflow: hidden;
+    height: 400px;
+    contain: strict;
+}
+
+.slider img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+    will-change: opacity;
+}
+
+.slider img.active {
+    opacity: 1;
+}
+
+/* Hover effects para botones - optimizados */
+button:hover {
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background-color: var(--primary-blue);
+    color: white;
+    padding: 0.85rem 1.7rem;
+    border-radius: 999px;
+    font-weight: 700;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    box-shadow: 0 8px 20px rgba(30, 64, 175, 0.15);
+    will-change: transform, background-color;
+}
+
+.btn-primary:hover {
+    background-color: #192f75;
+    transform: translateY(-2px);
+}
+
+.form-input {
+    width: 100%;
+    padding: 1rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 1rem;
+    background: #f9fafb;
+    font-size: 0.95rem;
+    color: #111827;
+    transition: border-color 0.15s ease;
+    will-change: border-color;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.08);
+}
+
+.service-card {
+    transition: transform 0.25s ease, border-color 0.25s ease;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    will-change: transform;
+}
+
+.service-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(59, 130, 246, 0.2);
+    box-shadow: 0 12px 40px rgba(15, 23, 42, 0.08);
+}
+
+.social-link img {
+    transition: transform 0.2s ease;
+    will-change: transform;
+}
+
+.social-link img:hover {
+    transform: scale(1.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1rem;
+    }
+    .slider {
+        height: 450px;
+    }
+    
+    /* Mobile Navbar Styles */
+    header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+    }
+    
+    #hamburger-menu span {
+        display: block;
+        width: 1.5rem;
+        height: 0.125rem;
+        background-color: white;
+        margin: 0.375rem 0;
+        transition: all 0.3s ease;
+    }
+    
+    /* Hamburger animation when active */
+    #hamburger-menu.active span:nth-child(1) {
+        transform: rotate(45deg) translate(8px, 8px);
+    }
+    
+    #hamburger-menu.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    #hamburger-menu.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+    }
+    
+    #mobile-nav {
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 0 0 0.5rem 0.5rem;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+    
+    #mobile-nav.active {
+        display: block;
+        max-height: 500px;
+        background-color: transparent;
+    }
+    
+    #mobile-nav ul li a {
+        font-size: 1rem;
+        display: block;
+        padding: 0.5rem 0;
+    }
+    
+    header p {
+        font-size: 0.875rem;
+    }
+    #hero{
+      position: sticky;
+      top:0;
+      left: 0;
+      height: 100dvh;
+    }
+    #hero h2 {
+        font-size: 1.75rem;
+    }
+    
+    #hero p {
+        font-size: 0.95rem;
+    }
+}
+
+/* Floating Buttons - optimizados */
+.whatsapp-float {
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    position: relative;
+    animation: pulse-optimized 2.5s ease-in-out infinite;
+    box-shadow: 0 6px 16px rgba(37, 211, 102, 0.3);
+    will-change: transform;
+}
+
+.whatsapp-float:hover {
+    background: linear-gradient(135deg, #128c7e, #075e54);
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+}
+
+@keyframes pulse-optimized {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+}
+
+.scroll-top {
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    background: linear-gradient(135deg, var(--primary-blue), var(--secondary-purple));
+    box-shadow: 0 6px 16px rgba(30, 64, 175, 0.3);
+    will-change: opacity, transform;
+}
+
+.scroll-top:hover {
+    background: linear-gradient(135deg, var(--secondary-purple), var(--primary-blue));
+    box-shadow: 0 8px 20px rgba(30, 64, 175, 0.4);
+}
+
+.scroll-top.show {
+    opacity: 1;
+    pointer-events: auto;
+}
